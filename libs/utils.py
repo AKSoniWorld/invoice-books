@@ -1,2 +1,3 @@
 def get_current_company(user):
-    return user.companies.first().company
+    user_company = user.companies.first()
+    return user_company.company if user_company else None

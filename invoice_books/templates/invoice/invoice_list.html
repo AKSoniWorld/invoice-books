@@ -5,7 +5,6 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <span>Invoices</span>
-{#            <span class="pull-right"><a href="{% url 'inventories:item_create' %}">Create</a></span>#}
         </div>
         <div class="panel-body">
             <div class="table-responsive">
@@ -18,6 +17,7 @@
                         <th>Total Discount</th>
                         <th>Total Tax</th>
                         <th>Total Amount</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,7 +29,7 @@
                             <td>{{ invoice.discount }}</td>
                             <td>{{ invoice.tax }}</td>
                             <td>{{ invoice.amount }}</td>
-{#                            <td><a href="{% url 'inventories:item_update' item.id %}">Update</a></td>#}
+                            <td><a href="{% url 'invoices:invoice_detail' invoice.id %}"><span class="btn btn-default">Detail</span></a></td>
                         </tr>
                     {% empty %}
                         No items to update.

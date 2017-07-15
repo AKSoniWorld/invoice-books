@@ -6,12 +6,17 @@
 </div>
 {% endblock %}
 {% block navbar_links_content %}
-<div class="navbar-header">
-    <a class="navbar-brand" href={% url 'inventories:item_list' %}>Items</a>
-</div>
-<div class="navbar-header">
-    <a class="navbar-brand" href={% url 'invoices:invoice_list' %}>Invoices</a>
-</div>
+<ul class="nav navbar-nav navbar-left">
+    <li>
+        <a href={% url 'inventories:item_list' %}>Items</a>
+    </li>
+    <li>
+        <a href={% url 'invoices:invoice_list' %}>Invoices</a>
+    </li>
+    <li>
+        <a href=""><span class="btn btn-success navbar-btn navbar_short_btn">+ New Invoice</span></a>
+    </li>
+</ul>
 {% endblock %}
 
 {% block main_content %}

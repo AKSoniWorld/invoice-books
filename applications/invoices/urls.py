@@ -9,4 +9,5 @@ from applications.invoices import views as invoices_views
 
 urlpatterns = [
     url(r'^$', invoices_views.InvoiceListView.as_view(), name='invoice_list'),
+    url(r'^(?P<invoice_id>[0-9]+)/$', invoices_views.InvoiceDetailView.as_view(), name='invoice_detail'),
 ]

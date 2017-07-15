@@ -104,10 +104,9 @@ body .modal-admin {
     display: inline-block;
 }
 
-.issue_form_actions {
-    float: right;
-}
-
-.issue_formset_submit {
-    float: left;
+.navbar_short_btn {
+    padding-top: 1px;
+    padding-bottom: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }

@@ -9,10 +9,10 @@ from applications.inventories import (
     models as inventories_models
 )
 
-from libs import utils as libs_utils
+from libs import mixins as libs_mixins
 
 
-class ItemListView(LoginRequiredMixin, ListView):
+class ItemListView(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin, ListView):
     """ View to list all items """
 
     model = inventories_models.Item
@@ -20,8 +20,11 @@ class ItemListView(LoginRequiredMixin, ListView):
     context_object_name = 'items_list'
     paginate_by = 20
 
+    def get_queryset(self):
+        return self.model.objects.filter(company=self.user_company)
 
-class ItemProcessMixin(LoginRequiredMixin):
+
+class ItemProcessMixin(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin):
 
     model = inventories_models.Item
     success_url = reverse_lazy('inventories:item_list')
@@ -29,7 +32,7 @@ class ItemProcessMixin(LoginRequiredMixin):
 
     def get_initial(self):
         initial_data = super(ItemProcessMixin, self).get_initial()
-        initial_data['company'] = libs_utils.get_current_company(self.request.user)
+        initial_data['company'] = self.user_company
         return initial_data
 
     def form_valid(self, form):

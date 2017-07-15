@@ -1,0 +1,80 @@
+{% extends 'project/dashboard.html' %}
+
+{% block main_content %}
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <span>Invoice - {{ invoice.seq_number }}</span>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td><strong>Customer Name:</strong></td>
+                        <td>{{ invoice.customer.name }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Address:</strong></td>
+                        <td>{{ invoice.customer.address_line_1 }}</td>
+                        <td>{{ invoice.customer.address_line_2 }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer State:</strong></td>
+                        <td>{{ invoice.customer.state }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Phone:</strong></td>
+                        <td>{{ invoice.customer.phone }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date:</strong></td>
+                        <td>{{ invoice.date }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Discount:</strong></td>
+                        <td>{{ invoice.discount }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Tax:</strong></td>
+                        <td>{{ invoice.tax }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Amount:</strong></td>
+                        <td>{{ invoice.amount }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Discount</th>
+                        <th>Tax</th>
+                        <th>Total Amount</th>
+                    </tr>
+                    {% for item in invoice.items.all %}
+                        <tr>
+                            <td>{{ item.item.name }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>{{ item.discount }}</td>
+                            <td>{{ item.tax }}</td>
+                            <td>{{ item.total_amount }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'invoices:invoice_list' %}">Back</a>
+
+{% endblock %}
