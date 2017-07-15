@@ -1,0 +1,113 @@
+header {
+    text-align: center;
+    padding: 10px 0 10px 0;
+    box-shadow: 0 8px 8px -8px #000000;
+}
+
+.content {
+    padding: 20px 0 20px 0;
+}
+
+.main_content {
+    padding: 10px;
+}
+
+footer {
+    box-shadow: 0 -5px 5px -5px #000000;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    height: 60px;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.index_content {
+    font-size: x-large;
+    text-align: center;
+}
+
+
+.pagination {
+    margin: 0;
+    float: left;
+}
+
+.show_all_div {
+    margin: 0;
+    float: right;
+}
+
+.panel-heading {
+    font-size: x-large;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.form_errors li {
+    color: #761c19;
+}
+
+.help-block {
+    color: #761c19;
+}
+
+.navbar-brand a {
+    font-weight: bolder;
+    color: #761c19;
+}
+
+.profile_image_block img {
+    max-height: 480px;
+    max-width: 90%;
+}
+
+.logout a {
+    font-weight: bolder;
+    color: #761c19;
+}
+
+.address_cell {
+    white-space: pre;
+}
+
+.js_ajax_loader_modal .modal-body {
+    margin: 15px;
+}
+
+.boolean_block img {
+    max-height: 17px;
+    max-width: 17px;
+}
+
+body .modal-admin {
+    width: 130px;
+    margin-top: 15%;
+    margin-left: 45%;
+}
+
+.modal-title {
+    float: left;
+}
+
+.modal_status_image {
+    display: inline-block;
+    float: right;
+}
+
+.selection_border {
+    border: 1px solid #122b40;
+}
+
+.order_symbol {
+    display: inline-block;
+}
+
+.issue_form_actions {
+    float: right;
+}
+
+.issue_formset_submit {
+    float: left;
+}

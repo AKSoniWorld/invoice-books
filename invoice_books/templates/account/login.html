@@ -1,0 +1,52 @@
+{% extends 'project/base.html' %}
+
+<div class="main_content">
+    {% block main_content %}
+        <legend>
+            <h3>Login</h3>
+        </legend>
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value={% firstof next '/dashboard/user' %}>
+            {% for error in form.non_field_errors %}
+                <span class="help-block"><strong>{{ error|escape }}</strong></span>
+            {% endfor %}
+            <div class="form-group">
+                <label for="id_username" class="col-sm-2 control-label">Email</label>
+
+                <div class="col-sm-4">
+                    <input type="email" class="form-control" maxlength="254" id="id_username" name="username"
+                           placeholder="Email">
+                    {% for error in form.username.errors %}
+                        <span class="help-block">{{ error|escape }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="id_password" class="col-sm-2 control-label">Password</label>
+
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" id="id_password" name="password"
+                           placeholder="Password">
+                    {% for error in form.password.errors %}
+                        <span class="help-block">{{ error|escape }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember_me"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+        </form>
+    {% endblock %}
+</div>

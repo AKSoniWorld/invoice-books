@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models import signals
 
 from applications.companies import models as companies_models
 from applications.customers import models as customers_models
 from applications.inventories import models as inventories_models
+from applications.invoices import listeners as invoices_listeners
 from applications.taxes import models as taxes_models
 
 from libs import models as libs_models
@@ -40,6 +42,7 @@ class InvoiceItem(libs_models.BaseSoftDeleteDatesModel):
     quantity = models.PositiveIntegerField(help_text='Quantity of item.')
     discount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Amount of discount given on this item.')
     amount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Actual amount of this item.')
+    taxable_amount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Taxable amount of this item.')
     total_amount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Total amount taken for this item.')
 
     class Meta:
@@ -63,3 +66,8 @@ class InvoiceItemTax(libs_models.BaseSoftDeleteDatesModel):
 
     def __unicode__(self):
         return '{} -> {}% -> {}'.format(self.invoice_item, self.percentage, self.amount) if self.active else 'INACTIVE'
+
+
+signals.post_save.connect(invoices_listeners.update_invoice_pdf_from_invoice, sender=Invoice)
+signals.post_save.connect(invoices_listeners.update_invoice_pdf_from_invoice_item, sender=InvoiceItem)
+signals.post_save.connect(invoices_listeners.update_invoice_pdf_from_invoice_item_tax, sender=InvoiceItemTax)

@@ -6,10 +6,14 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from views import TestView
+from invoice_books import views as invoice_books_views
 
 urlpatterns = [
+    url(r'^$', invoice_books_views.IndexView.as_view(), name='home'),
+    url(r'^account/', include('applications.accounts.urls'), name='accounts'),
+    url(r'^dashboard/$', invoice_books_views.DashboardView.as_view(), name='dashboard'),
+    url('^inventory/', include('applications.inventories.urls'), name='inventories'),
+    url('^invoice/', include('applications.invoices.urls'), name='invoices'),
+    url(r'^test/$', invoice_books_views.TestView.as_view(), name='test'),
     url(r'^admin/', admin.site.urls),
-    url('^', include('django.contrib.auth.urls')),
-    url(r'^test/$', TestView.as_view()),
 ]

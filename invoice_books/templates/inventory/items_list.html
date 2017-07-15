@@ -1,0 +1,69 @@
+{% extends 'project/dashboard.html' %}
+
+{% block main_content %}
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Items
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Item SKU</th>
+                        <th>name</th>
+                        <th>HSN</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Added On</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in items_list %}
+                        <tr>
+                            <td>{{ item.sku }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.hsn }}</td>
+                            <td>{{ item.description|truncatechars:20 }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.created_at.date }}</td>
+                            <td><a href="{% url 'inventories:item_update' item.id %}">Update</a></td>
+                        </tr>
+                    {% empty %}
+                        No items to update.
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix table-navigation">
+                {% if is_paginated %}
+                    <div class="pagination">
+                        <span class="step-links">
+                        <ul class="pager">
+                            {% if page_obj.has_previous %}
+                                <li>
+                                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                </li>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                <li>
+                                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                        </span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'dashboard' %}">Back</a>
+
+{% endblock %}

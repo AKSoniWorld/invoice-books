@@ -1,0 +1,12 @@
+{{ invoice.seq_number }}
+{{ invoice.date }}
+{{ company.state }}
+{{ customer.name }}
+{{ customer.consumer_number }}
+{{ customer.address_line_1 }}
+{{ customer.address_line_2 }}
+{{ customer.phone }}
+{{ customer.state }}
+{% for extra_info in customer.extra_info.all %}
+    {{ extra_info.key }}: {{ extra_info.value }}
+{% endfor %}

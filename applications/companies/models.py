@@ -21,6 +21,8 @@ class Company(libs_models.BaseSoftDeleteDatesModel):
     cin = models.CharField(max_length=30, blank=True, help_text='CIN of the company.')
     bank_account = models.CharField(max_length=60, blank=True, help_text='Details of bank account of the company.')
     invoice_terms_conditions = models.TextField(blank=True, help_text='Terms and Conditions that the company abide by.')
+    logo_1 = models.ImageField(help_text='Primary logo of the company.')
+    logo_2 = models.ImageField(null=True, blank=True, help_text='Secondary logo of the company.')
 
     def __unicode__(self):
         return '{} - {}'.format(self.name, self.gstin) if self.active else 'INACTIVE'

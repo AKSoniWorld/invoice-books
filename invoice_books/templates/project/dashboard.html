@@ -1,0 +1,16 @@
+{% extends 'project/base.html' %}
+
+{% block navbar_header_content %}
+<div class="navbar-header">
+    <a class="navbar-brand" href={% url 'dashboard' %}>Welcome {{ user.first_name }}</a>
+</div>
+{% endblock %}
+{% block navbar_links_content %}
+<div class="navbar-header">
+    <a class="navbar-brand" href={% url 'inventories:item_list' %}>Items</a>
+</div>
+{% endblock %}
+
+{% block main_content %}
+So, You are in. Let's get started.
+{% endblock %}

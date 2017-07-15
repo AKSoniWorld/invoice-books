@@ -1,0 +1,81 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Books</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            {% block header %}
+                {% include "project/header.html" %}
+            {% endblock %}
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="container">
+            {% include 'project/loader.html' %}
+            {% block content %}
+                {% block navbar_content %}
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            {% block navbar_header_content %}
+                            <div class="navbar-header">
+                                {% if user.is_authenticated %}
+                                    <a class="navbar-brand" href={% url 'dashboard' %}>Dashboard</a>
+                                {% else %}
+                                    <a class="navbar-brand" href={% url 'home' %}>Home</a>
+                                {% endif %}
+                            </div>
+                            {% endblock %}
+                            {% block navbar_links_content %}
+                            {% endblock %}
+                            {% block navbar_end_content %}
+                            <div>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url "logout" %}">Logout</a>
+                                        {% else %}
+                                            <a href="{% url "login" %}">Login</a>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endblock %}
+                        </div>
+                    </nav>
+                {% endblock %}
+                {% block message_content %}
+                    {% include 'project/messages.html' %}
+                {% endblock %}
+                {% block main_content %}
+                {% endblock %}
+            {% endblock content %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            {% block footer %}
+                {% include "project/footer.html" %}
+            {% endblock %}
+        </div>
+    </footer>
+
+<!-- Core Scripts - Include with every page -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+{% block javascript %}
+{% endblock %}
+
+
+</body>
+</html>

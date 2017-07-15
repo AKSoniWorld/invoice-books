@@ -1,0 +1,15 @@
+{% for invoice_item in invoice.items.all %}
+    #
+    {{ invoice_item.item.name }}
+    {{ invoice_item.item.hsn }}
+    {{ invoice_item.quantity }}
+    {{ invoice_item.amount }}
+    {{ invoice_item.quantity * invoice_item.amount }}
+    {{ invoice_item.discount }}
+    {{ invoice_item.taxable_amount }}
+    {% for invoice_item_tax in invoice_item.taxes.all %}
+        {{ invoice_item_tax.percentage }}
+        {{ invoice_item_tax.amount }}
+    {% endfor %}
+    {{ invoice_item.total_amount }}
+{% endfor %}
