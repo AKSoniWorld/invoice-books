@@ -1,17 +1,17 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.utils.translation import ugettext_lazy as _
+from django.views.generic import ListView, UpdateView, CreateView
 
-from applications.inventories import models as inventories_models
+from applications.inventories import (
+    forms as inventories_forms,
+    models as inventories_models
+)
+
+from libs import utils as libs_utils
 
 
-# class ItemCreateView(LoginRequiredMixin, CreateView):
-#     """ View to create a new item """
-#
-#     model = inventories_models.Item
-#     success_url = reverse_lazy('inventory:item_list')
-#
-#
 class ItemListView(LoginRequiredMixin, ListView):
     """ View to list all items """
 
@@ -21,21 +21,39 @@ class ItemListView(LoginRequiredMixin, ListView):
     paginate_by = 20
 
 
-# class UpdateItemView(LoginRequiredMixin, UpdateView):
-#     """ View to update an existing item """
-#     # MIXIN will not work if dispatch is overridden
-#     # add decorators manually to overridden dispatch for it to work.
-#
-#     model = Item
-#     form_class = ItemUpdateForm
-#     template_name = 'inventory/admin/item_update.html'
-#     success_url = reverse_lazy('inventory:dashboard_admin')
-#     pk_url_kwarg = 'item_id'
-#
-#     def form_valid(self, form):
-#         item = form.save()
-#         item_update_signal.send_robust(sender=UpdateItemView, item=item)
-#         messages.success(self.request, _('Item [%s] updated successfully.') % item.name)
-#         return super(UpdateItemView, self).form_valid(form)
-#
-#
+class ItemUpdateView(LoginRequiredMixin, UpdateView):
+
+    model = inventories_models.Item
+    form_class = inventories_forms.ItemUpdateForm
+    template_name = 'inventory/item_update.html'
+    success_url = reverse_lazy('inventories:item_list')
+    pk_url_kwarg = 'item_id'
+
+    def get_initial(self):
+        initial_data = super(ItemUpdateView, self).get_initial()
+        initial_data['company'] = libs_utils.get_current_company(self.request.user)
+        return initial_data
+
+    def form_valid(self, form):
+        item = form.save()
+        messages.success(self.request, _('Item [%s] updated successfully.') % item.name)
+        return super(ItemUpdateView, self).form_valid(form)
+
+
+class ItemCreateView(LoginRequiredMixin, CreateView):
+    """ View to create a new item """
+
+    model = inventories_models.Item
+    form_class = inventories_forms.ItemUpdateForm
+    template_name = 'inventory/item_update.html'
+    success_url = reverse_lazy('inventory:item_list')
+
+    def get_initial(self):
+        initial_data = super(ItemCreateView, self).get_initial()
+        initial_data['company'] = libs_utils.get_current_company(self.request.user)
+        return initial_data
+
+    def form_valid(self, form):
+        item = form.save()
+        messages.success(self.request, _('Item [%s] created successfully.') % item.name)
+        return super(ItemCreateView, self).form_valid(form)

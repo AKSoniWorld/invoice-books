@@ -1,4 +1,4 @@
-{% extends 'inventory/dashboard.html' %}
+{% extends 'project/dashboard.html' %}
 {% block main_content %}
 
     {% load staticfiles %}
@@ -18,12 +18,34 @@
             <form class="form-horizontal" method="post">
                 {% csrf_token %}
                 <div class="form-group">
+                    <label for="id_sku" class="col-sm-2 control-label">{{ form.sku.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_sku" name="sku"
+                               value="{{ form.sku.value }}">
+                        {% for error in form.sku.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="id_name" class="col-sm-2 control-label">{{ form.name.label }}</label>
 
                     <div class="col-sm-8">
                         <input type="text" class="form-control" maxlength='20' id="id_name" name="name"
                                value="{{ form.name.value }}">
                         {% for error in form.name.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_hsn" class="col-sm-2 control-label">{{ form.hsn.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_hsn" name="hsn"
+                               value="{{ form.hsn.value }}">
+                        {% for error in form.hsn.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
                     </div>
@@ -51,25 +73,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="id_is_returnable" class="col-sm-2 control-label">Returnable</label>
+                    <label for="id_tax_notes" class="col-sm-2 control-label">{{ form.tax_notes.label }}</label>
 
                     <div class="col-sm-8">
-                        <div class="boolean_block">
-                            {% if form.instance.is_returnable %}
-                                <img src="{% static "images/icon-yes.gif" %}" alt="yes">
-                            {% else %}
-                                <img src="{% static "images/icon-no.gif" %}" alt="no">
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="id_is_active" class="col-sm-2 control-label">{{ form.is_active.label }}</label>
-
-                    <div class="col-sm-8">
-                        <input type="checkbox" id="id_is_active" name="is_active"
-                               {% if form.is_active.value %}checked{% endif %}>
-                        {% for error in form.is_active.errors %}
+                    <textarea class="form-control" cols="40" id="id_tax_notes" name="tax_notes"
+                              rows="5">{{ form.tax_notes.value }}</textarea>
+                        {% for error in form.tax_notes.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
                     </div>
@@ -82,6 +91,6 @@
             </form>
         </div>
     </div>
-    <a href="{% url 'inventory:items_list' %}">Cancel</a>
+    <a href="{% url 'inventories:item_list' %}">Cancel</a>
 
 {% endblock %}

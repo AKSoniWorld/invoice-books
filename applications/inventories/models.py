@@ -18,5 +18,8 @@ class Item(libs_models.BaseSoftDeleteDatesModel):
     quantity = models.PositiveIntegerField(default=0, help_text='Current stock of the item.')
     tax_notes = models.CharField(max_length=60, blank=True, help_text='Notes about the tax applied on the item.')
 
+    class Meta:
+        unique_together = ('company', 'sku')
+
     def __unicode__(self):
         return '{} - {} - {}'.format(self.company, self.sku, self.quantity) if self.active else 'INACTIVE'

@@ -12,7 +12,6 @@ from applications.inventories import (
 
 urlpatterns = [
     url(r'^$', inventories_views.ItemListView.as_view(), name='item_list'),
-    # url(r'^create/$', inventories_views.ItemCreateView.as_view(), name='item_create'),
-    # url(r'^(?P<item_id>[0-9]+)/$', inventories_views.ItemDetailView.as_view(), name='item_update'),
-    # url(r'^(?P<item_id>[0-9]+)/update/$', inventories_views.ItemUpdateView.as_view(), name='item_update'),
+    url(r'^create/$', inventories_views.ItemCreateView.as_view(), name='item_create'),
+    url(r'^(?P<item_id>[0-9]+)/update/$', inventories_views.ItemUpdateView.as_view(), name='item_update'),
 ]
