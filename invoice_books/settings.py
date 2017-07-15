@@ -261,6 +261,8 @@ DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # ######### END STORAGE SETTINGS
 
+LOGIN_URL = 'accounts:login'
+
 # noinspection PyUnresolvedReferences
 from logger_settings import *
 # noinspection PyUnresolvedReferences

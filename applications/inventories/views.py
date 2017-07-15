@@ -21,39 +21,34 @@ class ItemListView(LoginRequiredMixin, ListView):
     paginate_by = 20
 
 
-class ItemUpdateView(LoginRequiredMixin, UpdateView):
+class ItemProcessMixin(LoginRequiredMixin):
 
     model = inventories_models.Item
-    form_class = inventories_forms.ItemUpdateForm
-    template_name = 'inventory/item_update.html'
     success_url = reverse_lazy('inventories:item_list')
-    pk_url_kwarg = 'item_id'
+    success_message = 'Item [%s] processed successfully.'
 
     def get_initial(self):
-        initial_data = super(ItemUpdateView, self).get_initial()
+        initial_data = super(ItemProcessMixin, self).get_initial()
         initial_data['company'] = libs_utils.get_current_company(self.request.user)
         return initial_data
 
     def form_valid(self, form):
         item = form.save()
-        messages.success(self.request, _('Item [%s] updated successfully.') % item.name)
-        return super(ItemUpdateView, self).form_valid(form)
+        messages.success(self.request, _(self.success_message) % item.name)
+        return super(ItemProcessMixin, self).form_valid(form)
 
 
-class ItemCreateView(LoginRequiredMixin, CreateView):
+class ItemUpdateView(ItemProcessMixin, UpdateView):
+
+    template_name = 'inventory/item_update.html'
+    form_class = inventories_forms.ItemUpdateForm
+    pk_url_kwarg = 'item_id'
+    success_message = 'Item [%s] updated successfully.'
+
+
+class ItemCreateView(ItemProcessMixin, CreateView):
     """ View to create a new item """
 
-    model = inventories_models.Item
-    form_class = inventories_forms.ItemUpdateForm
-    template_name = 'inventory/item_update.html'
-    success_url = reverse_lazy('inventory:item_list')
-
-    def get_initial(self):
-        initial_data = super(ItemCreateView, self).get_initial()
-        initial_data['company'] = libs_utils.get_current_company(self.request.user)
-        return initial_data
-
-    def form_valid(self, form):
-        item = form.save()
-        messages.success(self.request, _('Item [%s] created successfully.') % item.name)
-        return super(ItemCreateView, self).form_valid(form)
+    form_class = inventories_forms.ItemCreateForm
+    template_name = 'inventory/item_create.html'
+    success_message = 'Item [%s] created successfully.'
