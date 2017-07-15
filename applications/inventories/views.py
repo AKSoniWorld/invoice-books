@@ -16,7 +16,7 @@ class ItemListView(LoginRequiredMixin, ListView):
     """ View to list all items """
 
     model = inventories_models.Item
-    template_name = 'inventory/items_list.html'
+    template_name = 'inventory/item_list.html'
     context_object_name = 'items_list'
     paginate_by = 20
 
