@@ -1,3 +1,47 @@
+{% extends 'invoice_pdf/base.html' %}
+{% load staticfiles %}
+
+{% block body_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="{% static company.logo_1 %}" class="img-responsive">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-center">{{ company.name }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-center">{{ company.address_line_1 }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-center">{{ company.address_line_2 }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="text-center">{{ company.phone }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-center">{{ company.gstin }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <img src="{% static company.logo_2 %}" class="img-responsive">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
 {{ invoice.seq_number }}
 {{ invoice.date }}
 {{ company.state }}

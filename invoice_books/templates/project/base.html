@@ -11,6 +11,8 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
+{% block body_content %}
+
     <header>
         <div class="container">
             {% block header %}
@@ -69,10 +71,12 @@
             {% endblock %}
         </div>
     </footer>
+{% endblock %}
 
 <!-- Core Scripts - Include with every page -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
+
 {% block javascript %}
 {% endblock %}
 

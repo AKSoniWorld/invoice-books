@@ -19,12 +19,13 @@ class TestView(TemplateView):
 
     def get_context_data(self, **kwargs):
         return {
-            'logo_1': static('images/logo_1.png'),
-            'logo_2': static('images/logo_2.png'),
             'company': {
+                'logo_1': 'images/logo_1.png',
+                'logo_2': 'images/logo_2.png',
                 'name': 'My Company',
                 'address_line_1': 'Add line 1',
                 'address_line_2': 'Add line 2',
+                'phone': '09188182',
                 'GSTIN': 'My 09AAZFMHYU89',
             }
         }
