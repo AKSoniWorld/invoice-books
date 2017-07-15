@@ -19,4 +19,4 @@ class Item(libs_models.BaseSoftDeleteDatesModel):
     tax_notes = models.CharField(max_length=60, blank=True, help_text='Notes about the tax applied on the item.')
 
     def __unicode__(self):
-        return '{} - {} - {}'.format(self.company, self.sku, self.quantity)
+        return '{} - {} - {}'.format(self.company, self.sku, self.quantity) if self.active else 'INACTIVE'

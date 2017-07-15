@@ -15,7 +15,7 @@ class Tax(libs_models.BaseSoftDeleteDatesModel):
     percentage = models.DecimalField(decimal_places=2, max_digits=6, help_text='Percentage that should be applied on total amount.')
 
     def __unicode__(self):
-        return '{} - {}%'.format(self.name, self.percentage)
+        return '{} - {}%'.format(self.name, self.percentage) if self.active else 'INACTIVE'
 
 
 class ItemTax(libs_models.BaseSoftDeleteDatesModel):
@@ -29,4 +29,4 @@ class ItemTax(libs_models.BaseSoftDeleteDatesModel):
         unique_together = ('item', 'tax')
 
     def __unicode__(self):
-        return '{} - ({})'.format(self.item, self.tax)
+        return '{} - ({})'.format(self.item, self.tax) if self.active else 'INACTIVE'

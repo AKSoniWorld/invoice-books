@@ -23,7 +23,7 @@ class Company(libs_models.BaseSoftDeleteDatesModel):
     invoice_terms_conditions = models.TextField(blank=True, help_text='Terms and Conditions that the company abide by.')
 
     def __unicode__(self):
-        return '{} - {}'.format(self.name, self.gstin)
+        return '{} - {}'.format(self.name, self.gstin) if self.active else 'INACTIVE'
 
 
 class UserCompany(libs_models.BaseSoftDeleteDatesModel):
@@ -37,4 +37,4 @@ class UserCompany(libs_models.BaseSoftDeleteDatesModel):
         unique_together = ('user', 'company')
 
     def __unicode__(self):
-        return '{} - ({})'.format(self.user, self.company)
+        return '{} - ({})'.format(self.user, self.company) if self.active else 'INACTIVE'

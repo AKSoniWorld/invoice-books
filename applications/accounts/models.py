@@ -99,4 +99,4 @@ class User(AbstractBaseUser, PermissionsMixin, libs_models.BaseSoftDeleteDatesMo
         return '{} {}'.format(self.first_name, self.last_name)
 
     def __unicode__(self):
-        return self.get_full_name()
+        return self.get_full_name() if self.active else 'INACTIVE'
