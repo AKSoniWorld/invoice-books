@@ -25,6 +25,7 @@ ADMINS = (
 MANAGERS = ADMINS
 # ######### END MANAGER CONFIGURATION
 
+AUTH_USER_MODEL = u'accounts.User'
 
 # ######### DATABASE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -162,7 +163,7 @@ ROOT_URLCONF = '{0}.urls'.format(basename(BASE_DIR))
 
 # ######### APP CONFIGURATION
 DJANGO_APPS = [
-    # Default Django apps:
+    # Default Django applications:
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -184,7 +185,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'libs'         # To make template tags work
+    'libs',         # To make template tags work
+    'applications.accounts',
+    'applications.invoices',
+    'applications.inventories',
+    'applications.taxes'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -242,7 +247,7 @@ COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
 COMPRESS_OFFLINE_IGNORE_FILES = (
-    '.*site-packages.*',  # ignore all external apps templates
+    '.*site-packages.*',  # ignore all external applications templates
 )
 COMPRESS_OFFLINE_MANIFEST = 'manifest_{0}.json'.format(RESOURCE_VERSION)
 
