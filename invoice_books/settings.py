@@ -188,6 +188,7 @@ LOCAL_APPS = [
     'libs',         # To make template tags work
     'applications.accounts',
     'applications.companies',
+    'applications.customers',
     'applications.invoices',
     'applications.inventories',
     'applications.taxes'
