@@ -262,6 +262,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # ######### END STORAGE SETTINGS
 
 LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # noinspection PyUnresolvedReferences
 from logger_settings import *
