@@ -27,5 +27,8 @@ class CustomerExtraInfo(libs_models.BaseSoftDeleteDatesModel):
     key = models.CharField(max_length=30, help_text='Key of the extra info.')
     value = models.CharField(max_length=127, help_text='Value of the extra info.')
 
+    class Meta:
+        unique_together = ('customer', 'key')
+
     def __unicode__(self):
         return '{} - ({} - {})'.format(self.customer, self.key, self.value) if self.active else 'INACTIVE'
