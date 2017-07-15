@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="default">
+<head>
+
+    {% block styles %}
+        <link href="{% static 'scss/style.scss' %}" type="text/x-scss" rel="stylesheet" />
+    {% endblock %}
+
+</head>
+
+<body>
+{% block body %}
+
+<div id="page-wrap" class="global-wrap">
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

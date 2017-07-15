@@ -1,0 +1,128 @@
+@mixin font-shorthand($size: $font-size-base,$lineHeight: $line-height-base, $weight: normal, $style:normal) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $lineHeight;
+    // font-style: $style;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+//font Verb
+@mixin font-verb-regular($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Conv_Verb-Regular-4', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-verb-bold($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Conv_Verb-Regular-Bold', 'Conv_Verb-Regular-4', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-verb-semibold($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Conv_Verb-Semibold', 'Conv_Verb-Regular-4', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+
+
+//base font sizes
+@mixin font12 {
+    font-size: 12px;
+    line-height: 15px;
+}
+@mixin font14 {
+    font-size: 14px;
+    line-height: 18px;
+}
+@mixin font15 {
+    font-size: 15px;
+    line-height: 20px;
+}
+@mixin font16 {
+    font-size: 16px;
+    line-height: 22px;
+}
+@mixin font18 {
+    font-size: 18px;
+    line-height: 24px;
+}
+@mixin font24 {
+    font-size: 24px;
+    line-height: 30px;
+}
+@mixin font27 {
+    font-size: 27px;
+    line-height: 32px;
+}
+@mixin font32 {
+    font-size: 32px;
+    line-height: 38px;
+}
+@mixin font34 {
+    font-size: 34px;
+    line-height: 40px;
+}
+@mixin font36 {
+    font-size: 36px;
+    line-height: 42px;
+}
+@mixin font40 {
+    font-size: 40px;
+    line-height: 46px;
+}
+//-------font lato
+@mixin font-lato-black-italic($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato BlaIta', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-black($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato Bla', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-bold-italic($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato BolIta', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-bold($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato Bol', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-hairline-italic($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato HaiIta', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-hairline($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato Hai', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-light-italic($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato LigIta', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-light($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato Lig', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-regular-italic($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato RegIta', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+@mixin font-lato-regular($size: $font-size-base, $lineHeight: $line-height-base) {
+    font-family: 'Lato Reg', 'Lato Reg', sans-serif;
+    @include font-shorthand($size,$lineHeight);
+}
+
+//-customm mixins
+@mixin placeholder-italic($color: $input-color-placeholder, $fontSize: 36px, $lineHeight: 42px) {
+    // Firefox
+    &::-moz-placeholder {
+        color: $color;
+        @include font-lato-regular-italic($fontSize, $lineHeight);
+        opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+    }
+    &:-ms-input-placeholder { 
+        color: $color;
+        @include font-lato-regular-italic($fontSize, $lineHeight);
+    } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { 
+        color: $color;
+        @include font-lato-regular-italic($fontSize, $lineHeight);
+    } // Safari and Chrome
+}

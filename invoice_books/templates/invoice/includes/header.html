@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<div class="profile-tables-wrap">
+    <ul class="bw-table-wrap">
+        <li>
+            <span class="type-left"><span class="img-gap"><img src="{{ logo_1 }}"></span></span>
+            <ul>
+                <li><span class="type-left">{{ company.name }}</span></li>
+                <li><span class="type-left">{{ company.address_line_1 }}</span></li>
+                <li><span class="type-left">{{ company.address_line_2 }}</span></li>
+                <li><span class="type-left">GSTIN: {{ company.gstin }}</span></li>
+            </ul>
+            <span class="type-left"><span class="img-gap"><img src="{{ logo_2 }}"></span></span>
+        </li>
+    </ul>
+</div>

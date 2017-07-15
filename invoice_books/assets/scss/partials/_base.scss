@@ -1,0 +1,34 @@
+ul, h1, h2, h3, h4, h5, h6, p {
+    margin: 0px;
+    text-rendering: auto;
+}
+
+ul, ol, li {
+    list-style-type: none;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+}
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+.btn:focus {
+    outline: none;
+}
+
+.main-content {
+    background-color: #f0f0f0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1080px;
+    padding: 0;
+}

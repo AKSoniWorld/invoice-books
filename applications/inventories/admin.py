@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from applications.inventories import models as inventories_models
+
+
+admin.site.register(inventories_models.Item)

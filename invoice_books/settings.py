@@ -187,6 +187,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'libs',         # To make template tags work
     'applications.accounts',
+    'applications.companies',
     'applications.invoices',
     'applications.inventories',
     'applications.taxes'

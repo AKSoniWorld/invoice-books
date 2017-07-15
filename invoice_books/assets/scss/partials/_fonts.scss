@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'Conv_Verb-Regular-4';
+    src: url('#{$font-path-url}/Verb-Regular-4.eot');
+    src: url('#{$font-path-url}/Verb-Regular-4.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Verb-Regular-4.woff') format('woff'),
+         url('#{$font-path-url}/Verb-Regular-4.ttf') format('truetype'),
+         url('#{$font-path-url}/Verb-Regular-4.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Conv_Verb-Regular-Bold';
+    src: url('#{$font-path-url}/Verb-Regular-Bold.eot');
+    src: url('#{$font-path-url}/Verb-Regular-Bold.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Verb-Regular-Bold.woff') format('woff'),
+         url('#{$font-path-url}/Verb-Regular-Bold.ttf') format('truetype'),
+         url('#{$font-path-url}/Verb-Regular-Bold.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Conv_Verb-Semibold';
+    src: url('#{$font-path-url}/Verb-Semibold.eot');
+    src: url('#{$font-path-url}/Verb-Semibold.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Verb-Semibold.woff') format('woff'),
+         url('#{$font-path-url}/Verb-Semibold.ttf') format('truetype'),
+         url('#{$font-path-url}/Verb-Semibold.svg') format('svg');
+}
+//---------other update
+@font-face {
+    font-family: 'Lato BlaIta';
+    src: url('#{$font-path-url}/Lato-BlaIta.eot');
+    src: url('#{$font-path-url}/Lato-BlaIta.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-BlaIta.woff') format('woff'),
+         url('#{$font-path-url}/Lato-BlaIta.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-BlaIta.svg#Lato BlaIta') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato Bla';
+    src: url('#{$font-path-url}/Lato-Bla.eot');
+    src: url('#{$font-path-url}/Lato-Bla.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-Bla.woff') format('woff'),
+         url('#{$font-path-url}/Lato-Bla.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-Bla.svg#Lato Bla') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato BolIta';
+    src: url('#{$font-path-url}/Lato-BolIta.eot');
+    src: url('#{$font-path-url}/Lato-BolIta.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-BolIta.woff') format('woff'),
+         url('#{$font-path-url}/Lato-BolIta.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-BolIta.svg#Lato BolIta') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato Bol';
+    src: url('#{$font-path-url}/Lato-Bol.eot');
+    src: url('#{$font-path-url}/Lato-Bol.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-Bol.woff') format('woff'),
+         url('#{$font-path-url}/Lato-Bol.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-Bol.svg#Lato Bol') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato HaiIta';
+    src: url('#{$font-path-url}/Lato-HaiIta.eot');
+    src: url('#{$font-path-url}/Lato-HaiIta.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-HaiIta.woff') format('woff'),
+         url('#{$font-path-url}/Lato-HaiIta.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-HaiIta.svg#Lato HaiIta') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato Hai';
+    src: url('#{$font-path-url}/Lato-Hai.eot');
+    src: url('#{$font-path-url}/Lato-Hai.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-Hai.woff') format('woff'),
+         url('#{$font-path-url}/Lato-Hai.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-Hai.svg#Lato Hai') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato LigIta';
+    src: url('#{$font-path-url}/Lato-LigIta.eot');
+    src: url('#{$font-path-url}/Lato-LigIta.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-LigIta.woff') format('woff'),
+         url('#{$font-path-url}/Lato-LigIta.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-LigIta.svg#Lato LigIta') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato Lig';
+    src: url('#{$font-path-url}/Lato-Lig.eot');
+    src: url('#{$font-path-url}/Lato-Lig.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-Lig.woff') format('woff'),
+         url('#{$font-path-url}/Lato-Lig.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-Lig.svg#Lato Lig') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato RegIta';
+    src: url('#{$font-path-url}/Lato-RegIta.eot');
+    src: url('#{$font-path-url}/Lato-RegIta.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-RegIta.woff') format('woff'),
+         url('#{$font-path-url}/Lato-RegIta.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-RegIta.svg#Lato RegIta') format('svg');
+
+}
+
+@font-face {
+    font-family: 'Lato Reg';
+    src: url('#{$font-path-url}/Lato-Reg.eot');
+    src: url('#{$font-path-url}/Lato-Reg.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-path-url}/Lato-Reg.woff') format('woff'),
+         url('#{$font-path-url}/Lato-Reg.ttf') format('truetype'),
+         url('#{$font-path-url}/Lato-Reg.svg#Lato Reg') format('svg');
+}
