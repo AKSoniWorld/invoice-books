@@ -11,6 +11,7 @@ from invoice_books import views as invoice_books_views
 urlpatterns = [
     url(r'^$', invoice_books_views.IndexView.as_view(), name='home'),
     url(r'^account/', include('applications.accounts.urls', namespace='accounts')),
+    url(r'^customer/', include('applications.customers.urls', namespace='customers')),
     url(r'^dashboard/$', invoice_books_views.DashboardView.as_view(), name='dashboard'),
     url('^inventory/', include('applications.inventories.urls', namespace='inventories')),
     url('^invoice/', include('applications.invoices.urls', namespace='invoices')),

@@ -17,7 +17,7 @@
         <a href={% url 'taxes:tax_list' %}>Taxes</a>
     </li>
     <li>
-        <a href=""><span class="btn btn-success navbar-btn navbar_short_btn">+ New Invoice</span></a>
+        <a href={% url 'customers:customer_create' %}><span class="btn btn-success navbar-btn navbar_short_btn">+ New Invoice</span></a>
     </li>
 </ul>
 {% endblock %}

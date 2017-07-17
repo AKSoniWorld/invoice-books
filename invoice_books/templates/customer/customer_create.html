@@ -1,0 +1,100 @@
+{% extends 'project/dashboard.html' %}
+{% block main_content %}
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            {% if for_invoice %}Provide customer details for invoice{% else %}Add Customer{% endif %}
+        </div>
+        <div class="panel-body">
+            <div class="form_errors">
+                <ul class="list-group">
+                    {% for error in form.non_field_errors %}
+                        <li class="list-group-item"><strong>{{ error|escape }}</strong></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_name" class="col-sm-2 control-label">{{ form.name.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_name" name="name"
+                               {% if form.name.value %}value="{{ form.name.value }}"{% endif %}>
+                        <p id="nameHelpBlock" class="form-text text-muted">{{ form.name.help_text }}</p>
+                        {% for error in form.name.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_consumer_number" class="col-sm-2 control-label">{{ form.consumer_number.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_consumer_number" name="consumer_number"
+                               {% if form.consumer_number.value %}value="{{ form.consumer_number.value }}"{% endif %}>
+                        <p id="consumer_numberHelpBlock" class="form-text text-muted">{{ form.consumer_number.help_text }}</p>
+                        {% for error in form.consumer_number.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_address_line_1" class="col-sm-2 control-label">{{ form.address_line_1.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_address_line_1" name="address_line_1"
+                               {% if form.address_line_1.value %}value="{{ form.address_line_1.value }}"{% endif %}>
+                        <p id="address_line_1HelpBlock" class="form-text text-muted">{{ form.address_line_1.help_text }}</p>
+                        {% for error in form.address_line_1.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_address_line_2" class="col-sm-2 control-label">{{ form.address_line_2.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_address_line_2" name="address_line_2"
+                               {% if form.address_line_2.value %}value="{{ form.address_line_2.value }}"{% endif %}>
+                        <p id="address_line_2HelpBlock" class="form-text text-muted">{{ form.address_line_2.help_text }}</p>
+                        {% for error in form.address_line_2.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_state" class="col-sm-2 control-label">{{ form.state.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_state" name="state"
+                               {% if form.state.value %}value="{{ form.state.value }}"{% endif %}>
+                        <p id="stateHelpBlock" class="form-text text-muted">{{ form.state.help_text }}</p>
+                        {% for error in form.state.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_phone" class="col-sm-2 control-label">{{ form.phone.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" maxlength='20' id="id_phone" name="phone"
+                               {% if form.phone.value %}value="{{ form.phone.value }}"{% endif %}>
+                        <p id="phoneHelpBlock" class="form-text text-muted">{{ form.phone.help_text }}</p>
+                        {% for error in form.phone.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">{% if for_invoice %}Next{% else %}Create{% endif %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'dashboard' %}">Cancel</a>
+
+{% endblock %}

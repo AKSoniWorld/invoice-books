@@ -17,7 +17,7 @@ class Invoice(libs_models.BaseSoftDeleteDatesModel):
     Stores invoices and their info.
     """
     company = models.ForeignKey(companies_models.Company, related_name='invoices')
-    customer = models.ForeignKey(customers_models.Customer, related_name='invoices')
+    customer = models.ForeignKey(customers_models.Customer, related_name='invoices', help_text='Customer whom invoice is for.')
     seq_number = models.PositiveIntegerField(help_text='Invoice number.')
     date = models.DateField(help_text='Date of invoice generation.')
     is_paid = models.BooleanField(default=False, help_text='Represents whether this invoice has been paid.')
@@ -26,11 +26,12 @@ class Invoice(libs_models.BaseSoftDeleteDatesModel):
     def __unicode__(self):
         return '{} - {}- {}'.format(self.company, self.customer, self.seq_number) if self.active else 'INACTIVE'
 
-    def _get_next_seq_number(self):
+    @classmethod
+    def _get_next_seq_number(cls):
         """
         Returns next available sequence number to use for invoice.
         """
-        return (self.all_objects.aggregate(models.Max('seq_number'))['seq_number__max'] or 0) + 1
+        return (cls.all_objects.aggregate(models.Max('seq_number'))['seq_number__max'] or 0) + 1
 
 
 class InvoiceItem(libs_models.BaseSoftDeleteDatesModel):
