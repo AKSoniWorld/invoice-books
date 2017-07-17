@@ -12,13 +12,15 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Item SKU</th>
+                        <th>SKU</th>
                         <th>name</th>
                         <th>HSN</th>
                         <th>Description</th>
                         <th>Quantity</th>
                         <th>Price (INR)</th>
-                        <th>Added On</th>
+                        <th>Tax-1</th>
+                        <th>Tax-2</th>
+{#                        <th>Added On</th>#}
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -31,7 +33,9 @@
                             <td>{{ item.description|truncatechars:20 }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.price }}</td>
-                            <td>{{ item.created_at.date }}</td>
+                            <td>{{ item.taxes.all.0.tax }}</td>
+                            <td>{{ item.taxes.all.1.tax }}</td>
+{#                            <td>{{ item.created_at.date }}</td>#}
                             <td><a href="{% url 'inventories:item_update' item.id %}"><span class="btn btn-default">Update</span></a></td>
                         </tr>
                     {% empty %}
