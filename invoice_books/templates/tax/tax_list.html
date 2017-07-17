@@ -4,42 +4,32 @@
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <span>Items</span>
-            <a href="{% url 'inventories:item_create' %}"><span class="btn btn-primary pull-right">+ Add New Item</span></a>
+            <span>Taxes</span>
+            <a href="{% url 'taxes:tax_create' %}"><span class="btn btn-primary pull-right">+ Add New tax</span></a>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>SKU</th>
                         <th>Name</th>
-                        <th>HSN</th>
                         <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Price (INR)</th>
-                        <th>Tax-1</th>
-                        <th>Tax-2</th>
+                        <th>Percentage</th>
 {#                        <th>Added On</th>#}
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for item in items_list %}
+                    {% for tax in taxes_list %}
                         <tr>
-                            <td>{{ item.sku }}</td>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.hsn }}</td>
-                            <td>{{ item.description|truncatechars:20 }}</td>
-                            <td>{{ item.quantity }}</td>
-                            <td>{{ item.price }}</td>
-                            <td>{{ item.taxes.all.0.tax }}</td>
-                            <td>{{ item.taxes.all.1.tax }}</td>
-{#                            <td>{{ item.created_at.date }}</td>#}
-                            <td><a href="{% url 'inventories:item_update' item.id %}"><span class="btn btn-default">Update</span></a></td>
+                            <td>{{ tax.name }}</td>
+                            <td>{{ tax.description|truncatechars:20 }}</td>
+                            <td>{{ tax.percentage }}</td>
+{#                            <td>{{ tax.created_at.date }}</td>#}
+                            <td><a href="{% url 'taxes:tax_update' tax.id %}"><span class="btn btn-default">Update</span></a></td>
                         </tr>
                     {% empty %}
-                        No items.
+                        No taxes.
                     {% endfor %}
                     </tbody>
                 </table>

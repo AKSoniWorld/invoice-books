@@ -1,56 +1,70 @@
-{% extends 'invoice_pdf/base.html' %}
 {% load staticfiles %}
 
-{% block body_content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <img src="{% static company.logo_1 %}" class="img-responsive">
+<div class="bordered type-center">
+    <h2>Invoice</h2>
+</div>
+<div class="bordered">
+    <div class="half-block">
+        <div><span class="type-left">Invoice No.: </span><span class="type-left">{{ invoice.seq_number }}</span></div>
+        <div class="top-bordered"><span class="type-left">Invoice Date: </span><span class="type-left">{{ invoice.date }}</span></div>
+        <div class="top-bordered"><span class="type-left">Reverse Charge.: </span><span class="type-left">N</span></div>
+        <div class="top-bordered">
+            <div class="half-block">
+                <span class="type-left">State: </span><span class="type-left">{{ company.state }}</span>
             </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="text-center">{{ company.name }}</p>
-                    </div>
+            <div class="half-block">
+                <div class="half-block">
+                    <span class="type-left">Code</span>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="text-center">{{ company.address_line_1 }}</p>
-                    </div>
+                <div class="half-block">
+                    <span class="type-left">09</span>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p class="text-center">{{ company.address_line_2 }}</p>
-                    </div>
-                    <div class="col-md-2">
-                        <p class="text-center">{{ company.phone }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="text-center">{{ company.gstin }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static company.logo_2 %}" class="img-responsive">
             </div>
         </div>
     </div>
-{% endblock %}
+    <div class="left-bordered half-block">
+        <div><span class="type-left">Consumer No.: </span><span class="type-left">{{ customer.consumer_number }}</span></div>
+        {% for extra_info in customer.extra_info.all %}
+            <div class="top-bordered"><span class="type-left">{{ extra_info.key }}: </span><span class="type-left">{{ extra_info.value }}</span></div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="bordered non-empty"></div>
+
+<div class="bordered">
+    <div class="half-block">
+        <div><b><span class="type-left">Billing Address:</span></b></div>
+        <div><span class="type-left">Invoice No.: </span><span class="type-left">{{ invoice.seq_number }}</span></div>
+        <div class="top-bordered"><span class="type-left">Invoice Date: </span><span class="type-left">{{ invoice.date }}</span></div>
+        <div class="top-bordered"><span class="type-left">Reverse Charge.: </span><span class="type-left">N</span></div>
+        <div class="top-bordered">
+            <div class="half-block">
+                <span class="type-left">State: </span><span class="type-left">{{ company.state }}</span>
+            </div>
+            <div class="half-block">
+                <div class="half-block">
+                    <span class="type-left">Code</span>
+                </div>
+                <div class="half-block">
+                    <span class="type-left">09</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="left-bordered half-block">
+        <div><span class="type-left">Consumer No.: </span><span class="type-left">{{ customer.consumer_number }}</span></div>
+        {% for extra_info in customer.extra_info.all %}
+            <div class="top-bordered"><span class="type-left">{{ extra_info.key }}: </span><span class="type-left">{{ extra_info.value }}</span></div>
+        {% endfor %}
+    </div>
+</div>
 
 
 
 
-{{ invoice.seq_number }}
-{{ invoice.date }}
-{{ company.state }}
-{{ customer.name }}
-{{ customer.consumer_number }}
-{{ customer.address_line_1 }}
-{{ customer.address_line_2 }}
-{{ customer.phone }}
-{{ customer.state }}
-{% for extra_info in customer.extra_info.all %}
-    {{ extra_info.key }}: {{ extra_info.value }}
-{% endfor %}
+{#{{ customer.name }}#}
+{#{{ customer.address_line_1 }}#}
+{#{{ customer.address_line_2 }}#}
+{#{{ customer.phone }}#}
+{#{{ customer.state }}#}

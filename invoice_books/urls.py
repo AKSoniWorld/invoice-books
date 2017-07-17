@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^dashboard/$', invoice_books_views.DashboardView.as_view(), name='dashboard'),
     url('^inventory/', include('applications.inventories.urls', namespace='inventories')),
     url('^invoice/', include('applications.invoices.urls', namespace='invoices')),
+    url('^tax/', include('applications.taxes.urls', namespace='taxes')),
     url(r'^test/$', invoice_books_views.TestView.as_view(), name='test'),
     url(r'^admin/', admin.site.urls),
 ]

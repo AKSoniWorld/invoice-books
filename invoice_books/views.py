@@ -21,7 +21,7 @@ class TestView(TemplateView):
         return {
             'company': {
                 'logo_1': 'images/logo_1.png',
-                'logo_2': 'images/logo_2.png',
+                'logo_2': 'images/logo_2.jpg',
                 'name': 'My Company',
                 'address_line_1': 'Add line 1',
                 'address_line_2': 'Add line 2',
