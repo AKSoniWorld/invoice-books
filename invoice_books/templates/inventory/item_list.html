@@ -17,6 +17,7 @@
                         <th>HSN</th>
                         <th>Description</th>
                         <th>Quantity</th>
+                        <th>Price (INR)</th>
                         <th>Added On</th>
                         <th>Action</th>
                     </tr>
@@ -29,11 +30,12 @@
                             <td>{{ item.hsn }}</td>
                             <td>{{ item.description|truncatechars:20 }}</td>
                             <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }}</td>
                             <td>{{ item.created_at.date }}</td>
                             <td><a href="{% url 'inventories:item_update' item.id %}"><span class="btn btn-default">Update</span></a></td>
                         </tr>
                     {% empty %}
-                        No items to update.
+                        No items.
                     {% endfor %}
                     </tbody>
                 </table>

@@ -71,6 +71,17 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="id_price" class="col-sm-2 control-label">{{ form.price.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="number"  step="0.01" class="form-control" min="0" id="id_price" name="price"
+                               value="{{ form.price.value }}">
+                        {% for error in form.price.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="id_tax_notes" class="col-sm-2 control-label">{{ form.tax_notes.label }}</label>
 
                     <div class="col-sm-8">

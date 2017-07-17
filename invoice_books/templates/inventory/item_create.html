@@ -21,6 +21,7 @@
                     <div class="col-sm-8">
                         <input type="text" class="form-control" maxlength='20' id="id_sku" name="sku"
                                {% if form.sku.value %}value="{{ form.sku.value }}"{% endif %}>
+                        <p id="skuHelpBlock" class="form-text text-muted">{{ form.sku.help_text }}</p>
                         {% for error in form.sku.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
@@ -32,6 +33,7 @@
                     <div class="col-sm-8">
                         <input type="text" class="form-control" maxlength='20' id="id_name" name="name"
                                {% if form.name.value %}value="{{ form.name.value }}"{% endif %}>
+                        <p id="nameHelpBlock" class="form-text text-muted">{{ form.name.help_text }}</p>
                         {% for error in form.name.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
@@ -43,6 +45,7 @@
                     <div class="col-sm-8">
                         <input type="text" class="form-control" maxlength='20' id="id_hsn" name="hsn"
                                {% if form.hsn.value %}value="{{ form.hsn.value }}"{% endif %}>
+                        <p id="hsnHelpBlock" class="form-text text-muted">{{ form.hsn.help_text }}</p>
                         {% for error in form.hsn.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
@@ -54,6 +57,7 @@
                     <div class="col-sm-8">
                     <textarea class="form-control" cols="40" id="id_description" name="description"
                               rows="5">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                    <p id="descriptionHelpBlock" class="form-text text-muted">{{ form.description.help_text }}</p>
                         {% for error in form.description.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
@@ -65,7 +69,51 @@
                     <div class="col-sm-8">
                         <input type="number" class="form-control" min="0" id="id_quantity" name="quantity"
                                {% if form.quantity.value %}value="{{ form.quantity.value }}"{% endif %}>
+                        <p id="quantityHelpBlock" class="form-text text-muted">{{ form.quantity.help_text }}</p>
                         {% for error in form.quantity.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_price" class="col-sm-2 control-label">{{ form.price.label }}</label>
+
+                    <div class="col-sm-8">
+                        <input type="number"  step="0.01" class="form-control" min="0" id="id_price" name="price"
+                               {% if form.price.value %}value="{{ form.price.value }}"{% endif %}>
+                        <p id="priceHelpBlock" class="form-text text-muted">{{ form.price.help_text }}</p>
+                        {% for error in form.price.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group"><div class="col-sm-12"><hr></div></div>
+                <div class="form-group">
+                    <label for="id_tax_1" class="col-sm-2 control-label">{{ form.tax_1.label }}</label>
+
+                    <div class="col-sm-8">
+                    <select class="form-control" id="id_tax_1" name="tax_1">
+                        {% for key, value in form.tax_1.choices %}
+                            <option value="{{ key }}" {% if form.tax_1.value == key %}selected{% endif %}>{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                    <p id="tax_1HelpBlock" class="form-text text-muted">{{ form.tax_1.help_text }}</p>
+                        {% for error in form.tax_1.errors %}
+                            <span class="help-block">{{ error|escape }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_tax_2" class="col-sm-2 control-label">{{ form.tax_2.label }}</label>
+
+                    <div class="col-sm-8">
+                    <select class="form-control" id="id_tax_2" name="tax_2">
+                        {% for key, value in form.tax_2.choices %}
+                            <option value="{{ key }}" {% if form.tax_2.value == key %}selected{% endif %}>{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                    <p id="tax_2HelpBlock" class="form-text text-muted">{{ form.tax_2.help_text }}</p>
+                        {% for error in form.tax_2.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}
                     </div>
@@ -76,6 +124,7 @@
                     <div class="col-sm-8">
                     <textarea class="form-control" cols="40" id="id_tax_notes" name="tax_notes"
                               rows="5">{% if form.tax_notes.value %}{{ form.tax_notes.value }}{% endif %}</textarea>
+                    <p id="tax_notesHelpBlock" class="form-text text-muted">{{ form.tax_notes.help_text }}</p>
                         {% for error in form.tax_notes.errors %}
                             <span class="help-block">{{ error|escape }}</span>
                         {% endfor %}

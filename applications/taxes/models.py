@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from applications.inventories import models as inventories_models
 from libs import models as libs_models
 
 
@@ -22,7 +21,7 @@ class ItemTax(libs_models.BaseSoftDeleteDatesModel):
     """
     Stores taxes on items and their info.
     """
-    item = models.ForeignKey(inventories_models.Item, related_name='taxes')
+    item = models.ForeignKey('inventories.Item', related_name='taxes')
     tax = models.ForeignKey(Tax, related_name='items')
 
     class Meta:
