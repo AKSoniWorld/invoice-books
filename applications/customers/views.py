@@ -1,8 +1,12 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
+from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import View, CreateView
 
 from applications.customers import (
     forms as customers_forms,
@@ -37,3 +41,18 @@ class CustomerCreateView(CustomerProcessMixin, CreateView):
         context_data = super(CustomerCreateView, self).get_context_data(**kwargs)
         context_data.update({'for_invoice': True})
         return context_data
+
+
+class CustomerAutoCompleteView(LoginRequiredMixin, View):
+    """ View to serve customer names autocomplete request """
+
+    def get(self, request, *args, **kwargs):
+        if 'term' in self.request.GET:
+            term = self.request.GET['term']
+            customer_array = [
+                {'id': customer.id, 'text': customer.name}
+                for customer in customers_models.Customer.objects.filter(Q(name__icontains=term) | Q(consumer_number__icontains=term))
+            ]
+            return HttpResponse(json.dumps({'results': customer_array}), content_type='application/json')
+
+        return HttpResponseRedirect(reverse_lazy('user:login'))

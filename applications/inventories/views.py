@@ -1,8 +1,11 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import ListView, UpdateView, CreateView
+from django.views.generic import View, ListView, UpdateView, CreateView
 
 from applications.inventories import (
     forms as inventories_forms,
@@ -55,3 +58,18 @@ class ItemCreateView(ItemProcessMixin, CreateView):
     form_class = inventories_forms.ItemCreateForm
     template_name = 'inventory/item_create.html'
     success_message = 'Item [%s] created successfully.'
+
+
+class ItemAutoCompleteView(LoginRequiredMixin, View):
+    """ View to serve item names autocomplete request """
+
+    def get(self, request, *args, **kwargs):
+        if 'term' in self.request.GET:
+            term = self.request.GET['term']
+            item_array = [
+                {'id': item.id, 'text': item.name}
+                for item in inventories_models.Item.objects.filter(quantity__gt=0, name__icontains=term)
+            ]
+            return HttpResponse(json.dumps({'results': item_array}), content_type='application/json')
+
+        return HttpResponseRedirect(reverse_lazy('user:login'))

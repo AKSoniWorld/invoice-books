@@ -23,4 +23,4 @@ class Item(libs_models.BaseSoftDeleteDatesModel):
         unique_together = ('company', 'sku')
 
     def __unicode__(self):
-        return '{} - {} - {}'.format(self.company, self.sku, self.quantity) if self.active else 'INACTIVE'
+        return '{} ({}) - {}'.format(self.name, self.sku, self.quantity) if self.active else 'INACTIVE'

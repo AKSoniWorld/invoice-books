@@ -34,5 +34,5 @@ class InvoiceItemCreateForm(forms.ModelForm):
 
 
 InvoiceItemFormSet = inlineformset_factory(
-    invoices_models.Invoice, invoices_models.InvoiceItem, form=InvoiceItemCreateForm, extra=1
+    invoices_models.Invoice, invoices_models.InvoiceItem, form=InvoiceItemCreateForm, extra=0, min_num=1
 )

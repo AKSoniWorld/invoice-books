@@ -14,4 +14,5 @@ urlpatterns = [
     # url(r'^$', customers_views.customerListView.as_view(), name='customer_list'),
     url(r'^create/$', customers_views.CustomerCreateView.as_view(), name='customer_create'),
     # url(r'^(?P<customer_id>[0-9]+)/update/$', customers_views.customerUpdateView.as_view(), name='customer_update'),
+    url(r'^autocomplete/$', customers_views.CustomerAutoCompleteView.as_view(), name='customer_autocomplete'),
 ]

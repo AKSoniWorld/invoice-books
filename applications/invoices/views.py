@@ -59,13 +59,13 @@ class InvoiceCreateView(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin, Cr
             initial_data.update({'customer': int(customer_id)})
         initial_data.update({
             'company': self.user_company,
-            'date': datetime.date.today().strftime('%d/%m/%Y')
+            'date': datetime.date.today().strftime('%Y-%m-%d')
         })
         return initial_data
 
     def get_context_data(self, **kwargs):
         data = super(InvoiceCreateView, self).get_context_data(**kwargs)
-        data['invoice_items'] = invoices_forms.InvoiceItemFormSet(self.request.POST) if self.request.POST else invoices_forms.InvoiceItemFormSet()
+        data['invoice_items_formset'] = invoices_forms.InvoiceItemFormSet(self.request.POST) if self.request.POST else invoices_forms.InvoiceItemFormSet()
         return data
 
     def form_valid(self, form):
