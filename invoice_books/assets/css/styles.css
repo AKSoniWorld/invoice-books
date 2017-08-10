@@ -152,3 +152,11 @@ body .modal-admin {
 .non-empty {
     min-height: 15px;
 }
+
+.issue_form_actions {
+    float: left;
+}
+
+.issue_formset_submit {
+    float: right;
+}
