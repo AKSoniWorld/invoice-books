@@ -35,7 +35,7 @@ class CustomerCreateView(CustomerProcessMixin, CreateView):
     """ View to create a new item """
 
     template_name = 'customer/customer_create.html'
-    success_message = 'Customer [%s] updated successfully.'
+    success_message = 'Customer [%s] created successfully.'
 
     def get_context_data(self, **kwargs):
         context_data = super(CustomerCreateView, self).get_context_data(**kwargs)

@@ -36,17 +36,17 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td><strong>Total Discount:</strong></td>
+                        <td><strong>Total Discount Single Unit:</strong></td>
                         <td>{{ invoice.discount }}</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><strong>Total Tax:</strong></td>
+                        <td><strong>Total Tax Single Unit:</strong></td>
                         <td>{{ invoice.tax }}</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><strong>Total Amount:</strong></td>
+                        <td><strong>Total Amount Single Unit:</strong></td>
                         <td>{{ invoice.amount }}</td>
                         <td></td>
                     </tr>
@@ -57,8 +57,8 @@
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Amount</th>
+                        <th>Tax (%)</th>
                         <th>Discount</th>
-                        <th>Tax</th>
                         <th>Total Amount Per Unit</th>
                         <th>Total Amount</th>
                     </tr>
@@ -67,8 +67,8 @@
                             <td>{{ item.item.name }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.amount }}</td>
+                            <td>{{ item.tax }} ({{ item.tax_percentage }})</td>
                             <td>{{ item.discount }}</td>
-                            <td>{{ item.tax }}</td>
                             <td>{{ item.total_amount }}</td>
                             <td>{{ item.total_amount_all_units }}</td>
                             <td></td>

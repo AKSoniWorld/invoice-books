@@ -1,5 +1,6 @@
 import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.db.models import Sum, Prefetch
 from django.http.response import HttpResponseRedirect
@@ -37,10 +38,12 @@ class InvoiceDetailView(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin, De
 
     def get_queryset(self):
         return self.model.objects.filter(company=self.user_company).annotate(
-            discount=Sum('items__discount'), tax=Sum('items__taxes__amount'), amount=Sum('items__total_amount')
+            discount=Sum("items__discount"), tax=Sum('items__tax_applied'), amount=Sum('items__total_amount')
         ).prefetch_related(Prefetch(
             'items',
-            queryset=invoices_models.InvoiceItem.objects.annotate(tax=Sum('taxes__amount')).extra(select={'total_amount_all_units': "quantity * total_amount"})
+            queryset=invoices_models.InvoiceItem.objects.annotate(
+                tax=Sum('taxes__amount'), tax_percentage=Sum('taxes__percentage')
+            ).extra(select={'total_amount_all_units': "quantity * total_amount"})
         ))
 
 
@@ -75,5 +78,6 @@ class InvoiceCreateView(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin, Cr
             self.object = form.save()
             invoice_items_formset.instance = self.object
             invoice_items_formset.save()
+            messages.success(self.request, 'Invoice with sequence-no. [%s] created successfully.' % self.object.seq_number)
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(context)

@@ -45,9 +45,21 @@ class InvoiceItemCreateForm(forms.ModelForm):
 
     def save(self, commit=True):
         self.instance.amount = self.instance.item.price
-        self.instance.tax_applied = self.instance.amount * sum(self.instance.item.taxes.all().values_list('tax__percentage', flat=True))
+        self.instance.tax_applied = self.instance.amount * sum(self.instance.item.taxes.all().values_list('tax__percentage', flat=True)) / 100
         self.instance.total_amount = self.instance.amount - self.instance.discount + self.instance.tax_applied
-        return super(InvoiceItemCreateForm, self).save(commit)
+        invoice_item = super(InvoiceItemCreateForm, self).save(commit)
+
+        def save_m2m():
+            for item_tax in self.instance.item.taxes.all():
+                invoices_models.InvoiceItemTax.objects.create(
+                    invoice_item=invoice_item, tax=item_tax.tax, percentage=item_tax.tax.percentage,
+                    amount=item_tax.tax.percentage * self.instance.amount / 100
+                )
+
+        if not commit:
+            self.save_m2m = save_m2m
+
+        return invoice_item
 
 
 class BaseInvoiceItemFormSet(BaseInlineFormSet):
