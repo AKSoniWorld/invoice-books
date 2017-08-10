@@ -41,7 +41,8 @@ $(function () {
 
     function cloneMore() {
         var newElement = $('#js_empty_sub_form').clone();
-        var total = $('#id_form-TOTAL_FORMS').val();
+        var total = $('#id_items-TOTAL_FORMS').val();
+
         var div_id = newElement.attr('id').replace('empty', total);
         newElement.attr({'id': div_id});
         newElement.find('.select2-container').remove();
@@ -52,7 +53,7 @@ $(function () {
         newElement.find("input[id$='DELETE']").change(delete_item);
         newElement.show();
         total++;
-        $('#id_form-TOTAL_FORMS').val(total);
+        $('#id_items-TOTAL_FORMS').val(total);
         $('#js_sub_forms_table').append(newElement);
     }
 

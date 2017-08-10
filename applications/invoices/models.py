@@ -43,7 +43,7 @@ class InvoiceItem(libs_models.BaseSoftDeleteDatesModel):
     quantity = models.PositiveIntegerField(help_text='Quantity of item.')
     discount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Amount of discount given on this item.')
     amount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Actual amount of this item.')
-    taxable_amount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Taxable amount of this item.')
+    tax_applied = models.DecimalField(decimal_places=2, max_digits=16, help_text='Tax applied on this item.')
     total_amount = models.DecimalField(decimal_places=2, max_digits=16, help_text='Total amount taken for this item.')
 
     class Meta:

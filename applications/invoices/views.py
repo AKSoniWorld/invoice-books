@@ -1,8 +1,8 @@
 import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
-from django.db import transaction
 from django.db.models import Sum, Prefetch
+from django.http.response import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView
 
 from applications.invoices import (
@@ -40,7 +40,7 @@ class InvoiceDetailView(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin, De
             discount=Sum('items__discount'), tax=Sum('items__taxes__amount'), amount=Sum('items__total_amount')
         ).prefetch_related(Prefetch(
             'items',
-            queryset=invoices_models.InvoiceItem.objects.annotate(tax=Sum('taxes__amount')),
+            queryset=invoices_models.InvoiceItem.objects.annotate(tax=Sum('taxes__amount')).extra(select={'total_amount_all_units': "quantity * total_amount"})
         ))
 
 
@@ -70,10 +70,10 @@ class InvoiceCreateView(LoginRequiredMixin, libs_mixins.CompanyRequiredMixin, Cr
 
     def form_valid(self, form):
         context = self.get_context_data()
-        invoice_items = context['invoice_items']
-        with transaction.atomic():
+        invoice_items_formset = context['invoice_items_formset']
+        if invoice_items_formset.is_valid():
             self.object = form.save()
-            if invoice_items.is_valid():
-                invoice_items.instance = self.object
-                invoice_items.save()
-        return super(InvoiceCreateView, self).form_valid(form)
+            invoice_items_formset.instance = self.object
+            invoice_items_formset.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(context)

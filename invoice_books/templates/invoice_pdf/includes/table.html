@@ -6,7 +6,7 @@
     {{ invoice_item.amount }}
     {{ invoice_item.quantity * invoice_item.amount }}
     {{ invoice_item.discount }}
-    {{ invoice_item.taxable_amount }}
+    {{ invoice_item.tax_applied }}
     {% for invoice_item_tax in invoice_item.taxes.all %}
         {{ invoice_item_tax.percentage }}
         {{ invoice_item_tax.amount }}
